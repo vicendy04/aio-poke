@@ -11,3 +11,8 @@ class RestAdapter:
         endpoint = f"ability/{identifier}"
         data = await self.service.get(endpoint)
         return data
+
+    async def get_language(self, identifier: Any) -> Dict:
+        endpoint = f"language/{identifier}"
+        data = await self.service.get(endpoint)
+        return data

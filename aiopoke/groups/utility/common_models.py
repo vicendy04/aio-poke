@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import List
+from typing import Any, Dict, List
 
 
 @dataclass
@@ -18,6 +18,14 @@ class NamedAPIResource:
 class Name:
     name: str
     language: NamedAPIResource
+
+    def __init__(
+        self,
+        name: str,
+        language: Dict[str, Any],
+    ):
+        self.name = name
+        self.language = NamedAPIResource(**language)
 
 
 @dataclass
