@@ -3,29 +3,9 @@ from typing import Any, Dict, List
 
 
 @dataclass
-class IdentifiedResource:
+class CommonAPIResource:
     name: str
     id: int
-
-
-@dataclass
-class NamedAPIResource:
-    name: str
-    url: str
-
-
-@dataclass
-class Name:
-    name: str
-    language: NamedAPIResource
-
-    def __init__(
-        self,
-        name: str,
-        language: Dict[str, Any],
-    ):
-        self.name = name
-        self.language = NamedAPIResource(**language)
 
 
 @dataclass
@@ -34,55 +14,75 @@ class APIResource:
 
 
 @dataclass
+class AdditionalResource:
+    name: str
+    url: str
+
+
+@dataclass
+class Name:
+    name: str
+    language: AdditionalResource
+
+    def __init__(
+        self,
+        name: str,
+        language: Dict[str, Any],
+    ):
+        self.name = name
+        self.language = AdditionalResource(**language)
+
+
+@dataclass
 class Description:
     description: str
-    language: NamedAPIResource
+    language: AdditionalResource
 
 
 @dataclass
 class Effect:
     effect: str
-    language: NamedAPIResource
+    language: AdditionalResource
 
 
 @dataclass
 class Encounter:
     min_level: int
     max_level: int
-    condition_values: List[NamedAPIResource]
+    condition_values: List[AdditionalResource]
     chance: int
-    method: NamedAPIResource
+    method: AdditionalResource
 
 
 @dataclass
 class FlavorText:
     flavor_text: str
-    language: NamedAPIResource
-    version: NamedAPIResource
+    language: AdditionalResource
+    version: AdditionalResource
 
 
 @dataclass
 class GameIndeGenerationGameIndex:
     game_index: int
-    generation: NamedAPIResource
+    generation: AdditionalResource
 
 
 @dataclass
 class MachineVersionDetail:
     machine: APIResource
-    version_group: NamedAPIResource
+    version_group: AdditionalResource
 
 
 @dataclass
 class VerboseEffect:
     effect: str
     short_effect: str
-    language: NamedAPIResource
+    language: AdditionalResource
 
 
 @dataclass
 class VersionEncounterDetail:
-    version: NamedAPIResource
+    version: AdditionalResource
     max_chance: int
     encounter_details: List[Encounter]
 
@@ -90,11 +90,11 @@ class VersionEncounterDetail:
 @dataclass
 class VersionGameIndex:
     game_index: int
-    version: NamedAPIResource
+    version: AdditionalResource
 
 
 @dataclass
 class VersionGroupFlavorText:
     text: str
-    language: NamedAPIResource
-    version_group: NamedAPIResource
+    language: AdditionalResource
+    version_group: AdditionalResource

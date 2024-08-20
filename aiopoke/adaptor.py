@@ -16,3 +16,8 @@ class RestAdapter:
         endpoint = f"language/{identifier}"
         data = await self.service.get(endpoint)
         return data
+
+    async def get_pokemon(self, identifier: Any) -> Dict:
+        endpoint = f"pokemon/{identifier}"
+        data = await self.service.get(endpoint)
+        return data
