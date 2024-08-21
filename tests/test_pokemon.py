@@ -1,13 +1,13 @@
 import asyncio
 
-from aiopoke.adaptor import RestAdapter
-from aiopoke.groups.pokemon.pokemon import Pokemon
+from aiopoke.adaptor import PokeAPIClient
+from aiopoke.models.pokemon.pokemon import Pokemon
 from aiopoke.service import PokeAPIService
 
 
 async def print_language():
     poke_service = PokeAPIService()
-    adapter = RestAdapter(service=poke_service)
+    adapter = PokeAPIClient(service=poke_service)
 
     # Fetch language data
     pokemon_data = await adapter.get_pokemon(1)

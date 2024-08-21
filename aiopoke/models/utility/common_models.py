@@ -3,7 +3,7 @@ from typing import Any, Dict, List
 
 
 @dataclass
-class CommonAPIResource:
+class CommonResource:
     name: str
     id: int
 
@@ -62,7 +62,7 @@ class FlavorText:
 
 
 @dataclass
-class GameIndeGenerationGameIndex:
+class GenerationGameIndex:
     game_index: int
     generation: AdditionalResource
 

@@ -1,11 +1,11 @@
 import asyncio
-from aiopoke.adaptor import RestAdapter
+from aiopoke.adaptor import PokeAPIClient
 from aiopoke.service import PokeAPIService
 
 
 async def print_ability():
     poke_service = PokeAPIService()
-    adapter = RestAdapter(service=poke_service)
+    adapter = PokeAPIClient(service=poke_service)
 
     ability_data = await adapter.get_ability("overgrow")
     print("Result for 'overgrow':", ability_data)

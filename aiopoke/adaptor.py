@@ -3,7 +3,7 @@ from typing import Any, Dict
 from aiopoke.service import PokeAPIService
 
 
-class RestAdapter:
+class PokeAPIClient:
     def __init__(self, service: PokeAPIService):
         self.service = service
 

@@ -1,11 +1,11 @@
 from dataclasses import dataclass
 from typing import Any, Dict, List
 
-from aiopoke.groups.utility.common_models import Name, CommonAPIResource
+from aiopoke.models.utility.common_models import Name, CommonResource
 
 
 @dataclass
-class Language(CommonAPIResource):
+class Language(CommonResource):
     official: bool
     iso3166: str
     iso639: str

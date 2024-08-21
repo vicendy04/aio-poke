@@ -1,9 +1,9 @@
 from dataclasses import dataclass
 from typing import Any, Dict, List
 
-from aiopoke.groups.utility.common_models import (
+from aiopoke.models.utility.common_models import (
     AdditionalResource,
-    CommonAPIResource,
+    CommonResource,
     VersionGameIndex,
 )
 
@@ -120,7 +120,7 @@ class PokemonSprites:
         front_female: str,
         front_shiny: str,
         front_shiny_female: str,
-        **kwargs,  # Capture additional keyword arguments
+        **kwargs,  # other and versions JSON data not handle yet
     ):
         self.back_default = back_default
         self.back_female = back_female
@@ -145,7 +145,7 @@ class PokemonStat:
 
 
 @dataclass
-class Pokemon(CommonAPIResource):
+class Pokemon(CommonResource):
     base_experience: int
     height: int
     is_default: bool

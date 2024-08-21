@@ -1,8 +1,8 @@
 import asyncio
 import json
 
-from aiopoke.adaptor import RestAdapter
-from aiopoke.groups.utility.languages import Language
+from aiopoke.adaptor import PokeAPIClient
+from aiopoke.models.utility.languages import Language
 from aiopoke.service import PokeAPIService
 
 json_str = """
@@ -27,7 +27,7 @@ json_str = """
 
 async def print_language():
     poke_service = PokeAPIService()
-    adapter = RestAdapter(service=poke_service)
+    adapter = PokeAPIClient(service=poke_service)
 
     # Fetch language data
     language_data = await adapter.get_language(1)
