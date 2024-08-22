@@ -6,7 +6,7 @@ from aiopoke.models.games.version import Version
 from aiopoke.models.locations.locations import Location
 from aiopoke.models.pokemon.pokemon import Pokemon
 from aiopoke.models.utility.common_model import (
-    AdditionalResource,
+    NamedAPIResource,
     CommonResource,
     Name,
     VersionEncounterDetail,
@@ -16,18 +16,18 @@ from aiopoke.models.utility.common_model import (
 @dataclass
 class EncounterVersionDetails:
     rate: int
-    version: AdditionalResource[Version]
+    version: NamedAPIResource[Version]
 
 
 @dataclass
 class EncounterMethodRate:
-    encounter_method: AdditionalResource[EncounterMethod]
+    encounter_method: NamedAPIResource[EncounterMethod]
     version_details: List[EncounterVersionDetails]
 
 
 @dataclass
 class PokemonEncounter:
-    pokemon: AdditionalResource[Pokemon]
+    pokemon: NamedAPIResource[Pokemon]
     version_details: List[VersionEncounterDetail]
 
 
@@ -35,6 +35,6 @@ class PokemonEncounter:
 class LocationArea(CommonResource):
     game_index: int
     encounter_method_rates: List[EncounterMethodRate]
-    location: AdditionalResource[Location]
+    location: NamedAPIResource[Location]
     names: List[Name]
     pokemon_encounters: List[PokemonEncounter]

@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import List
 from aiopoke.models.pokemon.natures import Nature
 from aiopoke.models.utility.common_model import (
-    AdditionalResource,
+    NamedAPIResource,
     CommonResource,
     Name,
 )
@@ -11,7 +11,7 @@ from aiopoke.models.utility.common_model import (
 @dataclass
 class NaturePokeathlonStatAffect:
     max_change: int
-    nature: AdditionalResource[Nature]
+    nature: NamedAPIResource[Nature]
 
 
 @dataclass

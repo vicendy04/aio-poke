@@ -5,7 +5,7 @@ from typing import List
 from aiopoke.models.locations.location_areas import LocationArea
 from aiopoke.models.locations.regions import Region
 from aiopoke.models.utility.common_model import (
-    AdditionalResource,
+    NamedAPIResource,
     CommonResource,
     GenerationGameIndex,
     Name,
@@ -14,7 +14,7 @@ from aiopoke.models.utility.common_model import (
 
 @dataclass
 class Location(CommonResource):
-    region: AdditionalResource[Region]
+    region: NamedAPIResource[Region]
     names: List[Name]
     game_indices: List[GenerationGameIndex]
-    areas: List[AdditionalResource[LocationArea]]
+    areas: List[NamedAPIResource[LocationArea]]

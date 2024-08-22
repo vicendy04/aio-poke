@@ -12,7 +12,7 @@ from aiopoke.models.pokemon.pokemon_species import PokemonSpecies
 from aiopoke.models.pokemon.stats import Stat
 from aiopoke.models.pokemon.types import Type
 from aiopoke.models.utility.common_model import (
-    AdditionalResource,
+    NamedAPIResource,
     CommonResource,
     VersionGameIndex,
 )
@@ -21,19 +21,19 @@ from aiopoke.models.utility.common_model import (
 @dataclass
 class PokemonFormType:
     slot: int
-    type: AdditionalResource[Type]
+    type: NamedAPIResource[Type]
 
 
 @dataclass
 class PokemonAbility:
     is_hidden: bool
     slot: int
-    ability: AdditionalResource[Ability]
+    ability: NamedAPIResource[Ability]
 
     def __init__(self, is_hidden: bool, slot: int, ability: Dict[str, Any]):
         self.is_hidden = is_hidden
         self.slot = slot
-        self.ability = AdditionalResource(**ability)
+        self.ability = NamedAPIResource(**ability)
 
 
 @dataclass
@@ -45,20 +45,20 @@ class PokemonCries:
 @dataclass
 class PokemonHeldItemVersion:
     rarity: int
-    version: AdditionalResource[Version]
+    version: NamedAPIResource[Version]
 
     def __init__(self, rarity: int, version: Dict[str, Any]):
         self.rarity = rarity
-        self.version = AdditionalResource(**version)
+        self.version = NamedAPIResource(**version)
 
 
 @dataclass
 class PokemonHeldItem:
-    item: AdditionalResource[Item]
+    item: NamedAPIResource[Item]
     version_details: List[PokemonHeldItemVersion]
 
     def __init__(self, item: Dict[str, Any], version_details: List[Dict[str, Any]]):
-        self.item = AdditionalResource(**item)
+        self.item = NamedAPIResource(**item)
         self.version_details = [
             PokemonHeldItemVersion(**version) for version in version_details
         ]
@@ -67,8 +67,8 @@ class PokemonHeldItem:
 @dataclass
 class PokemonMoveVersion:
     level_learned_at: int
-    version_group: AdditionalResource[MoveLearnMethod]
-    move_learn_method: AdditionalResource[MoveLearnMethod]
+    version_group: NamedAPIResource[MoveLearnMethod]
+    move_learn_method: NamedAPIResource[MoveLearnMethod]
 
     def __init__(
         self,
@@ -77,19 +77,19 @@ class PokemonMoveVersion:
         move_learn_method: Dict[str, Any],
     ):
         self.level_learned_at = level_learned_at
-        self.version_group = AdditionalResource(**version_group)
-        self.move_learn_method = AdditionalResource(**move_learn_method)
+        self.version_group = NamedAPIResource(**version_group)
+        self.move_learn_method = NamedAPIResource(**move_learn_method)
 
 
 @dataclass
 class PokemonMove:
-    move: AdditionalResource[Move]
+    move: NamedAPIResource[Move]
     version_group_details: List[PokemonMoveVersion]
 
     def __init__(
         self, move: Dict[str, Any], version_group_details: List[Dict[str, Any]]
     ):
-        self.move = AdditionalResource(**move)
+        self.move = NamedAPIResource(**move)
         self.version_group_details = [
             PokemonMoveVersion(**version) for version in version_group_details
         ]
@@ -98,20 +98,20 @@ class PokemonMove:
 @dataclass
 class PokemonType:
     slot: int
-    type: AdditionalResource[Type]
+    type: NamedAPIResource[Type]
 
     def __init__(self, slot: int, type: Dict[str, Any]):
         self.slot = slot
-        self.type = AdditionalResource(**type)
+        self.type = NamedAPIResource(**type)
 
 
 @dataclass
 class PokemonTypePast:
-    generation: AdditionalResource[Generation]
+    generation: NamedAPIResource[Generation]
     types: List[PokemonType]
 
     def __init__(self, generation: Dict[str, Any], types: List[Dict[str, Any]]):
-        self.generation = AdditionalResource(**generation)
+        self.generation = NamedAPIResource(**generation)
         self.types = [PokemonType(**type) for type in types]
 
 
@@ -152,12 +152,12 @@ class PokemonSprites:
 class PokemonStat:
     base_stat: int
     effort: int
-    stat: AdditionalResource[Stat]
+    stat: NamedAPIResource[Stat]
 
     def __init__(self, base_stat: int, effort: int, stat: Dict[str, Any]):
         self.base_stat = base_stat
         self.effort = effort
-        self.stat = AdditionalResource(**stat)
+        self.stat = NamedAPIResource(**stat)
 
 
 @dataclass
@@ -168,12 +168,12 @@ class Pokemon(CommonResource):
     order: int
     weight: int
     abilities: List[PokemonAbility]
-    forms: List[AdditionalResource[PokemonForm]]
+    forms: List[NamedAPIResource[PokemonForm]]
     game_indices: List[VersionGameIndex]
     held_items: List[PokemonHeldItem]
     location_area_encounters: str
     moves: List[PokemonMove]
-    species: AdditionalResource[PokemonSpecies]
+    species: NamedAPIResource[PokemonSpecies]
     sprites: PokemonSprites
     cries: PokemonCries
     stats: List[PokemonStat]
@@ -210,12 +210,12 @@ class Pokemon(CommonResource):
         self.order = order
         self.weight = weight
         self.abilities = [PokemonAbility(**ability) for ability in abilities]
-        self.forms = [AdditionalResource(**form) for form in forms]
+        self.forms = [NamedAPIResource(**form) for form in forms]
         self.game_indices = [VersionGameIndex(**index) for index in game_indices]
         self.held_items = [PokemonHeldItem(**item) for item in held_items]
         self.location_area_encounters = location_area_encounters
         self.moves = [PokemonMove(**move) for move in moves]
-        self.species = AdditionalResource(**species)
+        self.species = NamedAPIResource(**species)
         self.sprites = PokemonSprites(**sprites)
         self.cries = PokemonCries(**cries)
         self.stats = [PokemonStat(**stat) for stat in stats]

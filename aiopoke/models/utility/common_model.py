@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, Dict, Generic, List, TypeVar
 
+from aiopoke.models.machines.machines import Machine
 from aiopoke.models.utility.languages import Language
 
 if TYPE_CHECKING:
@@ -17,12 +18,12 @@ T = TypeVar("T")
 
 
 @dataclass
-class Resource:
+class UnnamedAPIResource(Generic[T]):
     url: str
 
 
 @dataclass
-class AdditionalResource(Generic[T]):
+class NamedAPIResource(Generic[T]):
     name: str
     url: str
 
@@ -30,7 +31,7 @@ class AdditionalResource(Generic[T]):
 @dataclass
 class Description:
     description: str
-    language: AdditionalResource[Language]
+    language: NamedAPIResource[Language]
 
 
 @dataclass
@@ -42,7 +43,7 @@ class CommonResource:
 @dataclass
 class Name:
     name: str
-    language: AdditionalResource["Language"]
+    language: NamedAPIResource["Language"]
 
     def __init__(
         self,
@@ -50,56 +51,53 @@ class Name:
         language: Dict[str, Any],
     ):
         self.name = name
-        self.language = AdditionalResource(**language)
+        self.language = NamedAPIResource(**language)
 
 
-# here
 @dataclass
 class Effect:
     effect: str
-    language: AdditionalResource[Language]
+    language: NamedAPIResource[Language]
 
 
 @dataclass
 class Encounter:
     min_level: int
     max_level: int
-    condition_values: List[AdditionalResource[EncounterConditionValue]]
+    condition_values: List[NamedAPIResource[EncounterConditionValue]]
     chance: int
-    method: AdditionalResource[EncounterMethod]
+    method: NamedAPIResource[EncounterMethod]
 
 
-# here
 @dataclass
 class FlavorText:
     flavor_text: str
-    language: AdditionalResource[Language]
-    version: AdditionalResource[Version]
+    language: NamedAPIResource[Language]
+    version: NamedAPIResource[Version]
 
 
 @dataclass
 class GenerationGameIndex:
     game_index: int
-    generation: AdditionalResource[Generation]
+    generation: NamedAPIResource[Generation]
 
 
 @dataclass
 class MachineVersionDetail:
-    # here
-    machine: Resource
-    version_group: AdditionalResource[VersionGroup]
+    machine: UnnamedAPIResource[Machine]
+    version_group: NamedAPIResource[VersionGroup]
 
 
 @dataclass
 class VerboseEffect:
     effect: str
     short_effect: str
-    language: AdditionalResource[Language]
+    language: NamedAPIResource[Language]
 
 
 @dataclass
 class VersionEncounterDetail:
-    version: AdditionalResource[Version]
+    version: NamedAPIResource[Version]
     max_chance: int
     encounter_details: List[Encounter]
 
@@ -107,11 +105,11 @@ class VersionEncounterDetail:
 @dataclass
 class VersionGameIndex:
     game_index: int
-    version: AdditionalResource[Version]
+    version: NamedAPIResource[Version]
 
 
 @dataclass
 class VersionGroupFlavorText:
     text: str
-    language: AdditionalResource[Language]
-    version_group: AdditionalResource[VersionGroup]
+    language: NamedAPIResource[Language]
+    version_group: NamedAPIResource[VersionGroup]

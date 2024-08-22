@@ -3,7 +3,7 @@ from typing import List
 
 from aiopoke.models.berries.berries import Berry
 from aiopoke.models.utility.common_model import (
-    AdditionalResource,
+    NamedAPIResource,
     CommonResource,
     Name,
 )
@@ -11,5 +11,5 @@ from aiopoke.models.utility.common_model import (
 
 @dataclass
 class BerryFirmness(CommonResource):
-    berries: List[AdditionalResource[Berry]]
+    berries: List[NamedAPIResource[Berry]]
     names: List[Name]

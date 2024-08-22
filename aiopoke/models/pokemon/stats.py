@@ -3,10 +3,11 @@ from typing import List
 
 from aiopoke.models.moves.move_damage_classes import MoveDamageClass
 from aiopoke.models.moves.moves import Move
+from aiopoke.models.pokemon.characteristic import Characteristic
 from aiopoke.models.pokemon.natures import Nature
 from aiopoke.models.utility.common_model import (
-    Resource,
-    AdditionalResource,
+    UnnamedAPIResource,
+    NamedAPIResource,
     CommonResource,
     Name,
 )
@@ -15,7 +16,7 @@ from aiopoke.models.utility.common_model import (
 @dataclass
 class MoveStatAffect:
     change: int
-    move: AdditionalResource[Move]
+    move: NamedAPIResource[Move]
 
 
 @dataclass
@@ -26,8 +27,8 @@ class MoveStatAffectSets:
 
 @dataclass
 class NatureStatAffectSets:
-    increase: List[AdditionalResource[Nature]]
-    decrease: List[AdditionalResource[Nature]]
+    increase: List[NamedAPIResource[Nature]]
+    decrease: List[NamedAPIResource[Nature]]
 
 
 @dataclass
@@ -36,7 +37,6 @@ class Stat(CommonResource):
     is_battle_only: bool
     affecting_moves: MoveStatAffectSets
     affecting_natures: NatureStatAffectSets
-    # here
-    characteristics: List[Resource]
-    move_damage_class: AdditionalResource[MoveDamageClass]
+    characteristics: List[UnnamedAPIResource[Characteristic]]
+    move_damage_class: NamedAPIResource[MoveDamageClass]
     names: List[Name]

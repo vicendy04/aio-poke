@@ -5,7 +5,7 @@ from aiopoke.models.games.version_groups import VersionGroup
 from aiopoke.models.locations.regions import Region
 from aiopoke.models.pokemon.pokemon_species import PokemonSpecies
 from aiopoke.models.utility.common_model import (
-    AdditionalResource,
+    NamedAPIResource,
     CommonResource,
     Description,
     Name,
@@ -15,7 +15,7 @@ from aiopoke.models.utility.common_model import (
 @dataclass
 class PokemonEntry:
     entry_number: int
-    pokemon_species: AdditionalResource[PokemonSpecies]
+    pokemon_species: NamedAPIResource[PokemonSpecies]
 
 
 @dataclass
@@ -24,5 +24,5 @@ class Pokedex(CommonResource):
     descriptions: List[Description]
     names: List[Name]
     pokemon_entries: List[PokemonEntry]
-    region: AdditionalResource[Region]
-    version_groups: List[AdditionalResource[VersionGroup]]
+    region: NamedAPIResource[Region]
+    version_groups: List[NamedAPIResource[VersionGroup]]

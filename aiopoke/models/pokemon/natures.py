@@ -6,7 +6,7 @@ from aiopoke.models.moves.move_battle_styles import MoveBatteStyle
 from aiopoke.models.pokemon.pokeathlon_stats import PokeathlonStat
 from aiopoke.models.pokemon.stats import Stat
 from aiopoke.models.utility.common_model import (
-    AdditionalResource,
+    NamedAPIResource,
     CommonResource,
     Name,
 )
@@ -16,22 +16,22 @@ from aiopoke.models.utility.common_model import (
 class MoveBattleStylePreference:
     low_hp_preference: int
     high_hp_preference: int
-    move_battle_style: AdditionalResource[MoveBatteStyle]
+    move_battle_style: NamedAPIResource[MoveBatteStyle]
 
 
 @dataclass
 class NatureStatChange:
     max_change: int
-    pokeathlon_stat: AdditionalResource[PokeathlonStat]
+    pokeathlon_stat: NamedAPIResource[PokeathlonStat]
 
 
 @dataclass
 class Nature(CommonResource):
-    decreased_stat: AdditionalResource[Stat]
-    increased_stat: AdditionalResource[Stat]
+    decreased_stat: NamedAPIResource[Stat]
+    increased_stat: NamedAPIResource[Stat]
 
-    likes_flavor: AdditionalResource[BerryFlavor]
-    hates_flavor: AdditionalResource[BerryFlavor]
+    likes_flavor: NamedAPIResource[BerryFlavor]
+    hates_flavor: NamedAPIResource[BerryFlavor]
     pokeathlon_stat_changes: List[NatureStatChange]
     move_battle_style_preferences: List[MoveBattleStylePreference]
     names: List[Name]

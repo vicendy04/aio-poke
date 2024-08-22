@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from typing import List, Optional
 
+from aiopoke.models.contests.contest_effects import ContestEffect
 from aiopoke.models.contests.contest_types import ContestType
 from aiopoke.models.contests.super_contest_effects import SuperContestEffect
 from aiopoke.models.games.generations import Generation
@@ -14,11 +15,11 @@ from aiopoke.models.pokemon.pokemon import Pokemon
 from aiopoke.models.pokemon.stats import Stat
 from aiopoke.models.pokemon.types import Type
 from aiopoke.models.utility.common_model import (
-    AdditionalResource,
+    NamedAPIResource,
     CommonResource,
     MachineVersionDetail,
     Name,
-    Resource,
+    UnnamedAPIResource,
     VerboseEffect,
 )
 from aiopoke.models.utility.languages import Language
@@ -27,14 +28,14 @@ from aiopoke.models.utility.languages import Language
 @dataclass
 class MoveFlavorText:
     flavor_text: str
-    language: AdditionalResource[Language]
-    version_group: AdditionalResource[VersionGroup]
+    language: NamedAPIResource[Language]
+    version_group: NamedAPIResource[VersionGroup]
 
 
 @dataclass
 class MoveMetaData:
-    ailment: AdditionalResource[MoveAilment]
-    category: AdditionalResource[MoveCategory]
+    ailment: NamedAPIResource[MoveAilment]
+    category: NamedAPIResource[MoveCategory]
     min_hits: int
     max_hits: int
     min_turns: int
@@ -53,19 +54,19 @@ class PastMoveStatValues:
     power: int
     pp: int
     effect_entries: List[VerboseEffect]
-    type: AdditionalResource[Type]
-    version_group: AdditionalResource[VersionGroup]
+    type: NamedAPIResource[Type]
+    version_group: NamedAPIResource[VersionGroup]
 
 
 @dataclass
 class MoveStatChange:
     change: int
-    stat: AdditionalResource[Stat]
+    stat: NamedAPIResource[Stat]
 
 
 class ContestComboDetail:
-    use_before: Optional[List[AdditionalResource["Move"]]]
-    use_after: Optional[List[AdditionalResource["Move"]]]
+    use_before: Optional[List[NamedAPIResource["Move"]]]
+    use_after: Optional[List[NamedAPIResource["Move"]]]
 
 
 @dataclass
@@ -81,21 +82,19 @@ class Move(CommonResource):
     priority: int
     power: int
     contest_combos: ContestComboSets
-    contest_type: AdditionalResource[ContestType]
-    # here
-    contest_effect: Resource
-    damage_class: AdditionalResource[MoveDamageClass]
+    contest_type: NamedAPIResource[ContestType]
+    contest_effect: UnnamedAPIResource[ContestEffect]
+    damage_class: NamedAPIResource[MoveDamageClass]
     effect_entries: List[VerboseEffect]
     effect_changes: List[AbilityEffectChange]
     machines: List[MachineVersionDetail]
-    generation: AdditionalResource[Generation]
+    generation: NamedAPIResource[Generation]
     meta: MoveMetaData
     names: List[Name]
     past_values: List[PastMoveStatValues]
     stat_changes: List[MoveStatChange]
-    # here
-    super_contest_effect: Resource
-    target: AdditionalResource[MoveTarget]
-    type: AdditionalResource[Type]
-    learned_by_pokemon: List[AdditionalResource[Pokemon]]
+    super_contest_effect: UnnamedAPIResource[SuperContestEffect]
+    target: NamedAPIResource[MoveTarget]
+    type: NamedAPIResource[Type]
+    learned_by_pokemon: List[NamedAPIResource[Pokemon]]
     flavor_text_entries: List[MoveFlavorText]

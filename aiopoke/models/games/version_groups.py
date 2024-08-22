@@ -4,7 +4,7 @@ from typing import List, TYPE_CHECKING
 from aiopoke.models.games.version import Version
 from aiopoke.models.locations.regions import Region
 from aiopoke.models.moves.move_learn_methods import MoveLearnMethod
-from aiopoke.models.utility.common_model import AdditionalResource, CommonResource
+from aiopoke.models.utility.common_model import NamedAPIResource, CommonResource
 
 if TYPE_CHECKING:
     from aiopoke.models.games.generations import Generation
@@ -14,8 +14,8 @@ if TYPE_CHECKING:
 @dataclass
 class VersionGroup(CommonResource):
     order: int
-    generation: "AdditionalResource['Generation']"
-    move_learn_methods: List[AdditionalResource[MoveLearnMethod]]
-    pokedexes: List[AdditionalResource[Pokedex]]
-    regions: List[AdditionalResource[Region]]
-    versions: AdditionalResource[Version]
+    generation: "NamedAPIResource['Generation']"
+    move_learn_methods: List[NamedAPIResource[MoveLearnMethod]]
+    pokedexes: List[NamedAPIResource[Pokedex]]
+    regions: List[NamedAPIResource[Region]]
+    versions: NamedAPIResource[Version]

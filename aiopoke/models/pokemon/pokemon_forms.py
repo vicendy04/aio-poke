@@ -4,7 +4,7 @@ from typing import List
 from aiopoke.models.games.version_groups import VersionGroup
 from aiopoke.models.pokemon.pokemon import Pokemon, PokemonFormType
 from aiopoke.models.utility.common_model import (
-    AdditionalResource,
+    NamedAPIResource,
     CommonResource,
     Name,
 )
@@ -30,9 +30,9 @@ class PokemonForm(CommonResource):
     is_battle_only: bool
     is_mega: bool
     form_name: str
-    pokemon: AdditionalResource[Pokemon]
+    pokemon: NamedAPIResource[Pokemon]
     sprites: PokemonFormSprites
     types: List[PokemonFormType]
-    version_group: AdditionalResource[VersionGroup]
+    version_group: NamedAPIResource[VersionGroup]
     names: List[Name]
     form_names: List[Name]

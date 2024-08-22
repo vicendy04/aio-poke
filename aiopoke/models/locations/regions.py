@@ -5,7 +5,7 @@ from aiopoke.models.games.pokedexs import Pokedex
 from aiopoke.models.games.version_groups import VersionGroup
 from aiopoke.models.locations.locations import Location
 from aiopoke.models.utility.common_model import (
-    AdditionalResource,
+    NamedAPIResource,
     CommonResource,
     Name,
 )
@@ -16,8 +16,8 @@ if TYPE_CHECKING:
 
 @dataclass
 class Region(CommonResource):
-    locations: List[AdditionalResource[Location]]
-    main_generation: AdditionalResource[Generation]
+    locations: List[NamedAPIResource[Location]]
+    main_generation: NamedAPIResource[Generation]
     names: List[Name]
-    pokedexes: List[AdditionalResource[Pokedex]]
-    version_groups: List[AdditionalResource[VersionGroup]]
+    pokedexes: List[NamedAPIResource[Pokedex]]
+    version_groups: List[NamedAPIResource[VersionGroup]]

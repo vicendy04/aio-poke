@@ -1,7 +1,7 @@
 from typing import List
 from aiopoke.models.moves.moves import Move
 from aiopoke.models.utility.common_model import (
-    AdditionalResource,
+    NamedAPIResource,
     CommonResource,
     Description,
     Name,
@@ -10,5 +10,5 @@ from aiopoke.models.utility.common_model import (
 
 class MoveTarget(CommonResource):
     descriptions: List["Description"]
-    moves: List[AdditionalResource[Move]]
+    moves: List[NamedAPIResource[Move]]
     names: List["Name"]

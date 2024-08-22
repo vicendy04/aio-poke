@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, List
 
 from aiopoke.models.utility.common_model import (
-    AdditionalResource,
+    NamedAPIResource,
     CommonResource,
     Name,
 )
@@ -14,4 +14,4 @@ if TYPE_CHECKING:
 @dataclass
 class Version(CommonResource):
     names: List[Name]
-    version_group: AdditionalResource[VersionGroup]
+    version_group: NamedAPIResource[VersionGroup]

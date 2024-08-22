@@ -3,7 +3,7 @@ from typing import List
 
 from aiopoke.models.items.item import Item
 from aiopoke.models.utility.common_model import (
-    AdditionalResource,
+    NamedAPIResource,
     CommonResource,
     Description,
     Name,
@@ -13,5 +13,5 @@ from aiopoke.models.utility.common_model import (
 @dataclass
 class ItemAttribute(CommonResource):
     descriptions: List[Description]
-    items: List[AdditionalResource["Item"]]
+    items: List[NamedAPIResource["Item"]]
     names: List[Name]

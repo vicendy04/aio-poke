@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import List
 
 from aiopoke.models.berries.berry_flavors import BerryFlavor
-from aiopoke.models.utility.common_model import AdditionalResource, CommonResource
+from aiopoke.models.utility.common_model import NamedAPIResource, CommonResource
 from aiopoke.models.utility.languages import Language
 
 
@@ -10,10 +10,10 @@ from aiopoke.models.utility.languages import Language
 class ContestName:
     name: str
     color: str
-    language: AdditionalResource[Language]
+    language: NamedAPIResource[Language]
 
 
 @dataclass
 class ContestType(CommonResource):
-    berry_flavor: AdditionalResource[BerryFlavor]
+    berry_flavor: NamedAPIResource[BerryFlavor]
     names: List[ContestName]

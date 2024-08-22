@@ -4,7 +4,7 @@ from typing import List
 from aiopoke.models.berries.berries import Berry
 from aiopoke.models.contests.contest_types import ContestType
 from aiopoke.models.utility.common_model import (
-    AdditionalResource,
+    NamedAPIResource,
     CommonResource,
     Name,
 )
@@ -13,11 +13,11 @@ from aiopoke.models.utility.common_model import (
 @dataclass
 class FlavorBerryMap:
     potency: int
-    berry: AdditionalResource[Berry]
+    berry: NamedAPIResource[Berry]
 
 
 @dataclass
 class BerryFlavor(CommonResource):
     berries: List[FlavorBerryMap]
-    contest_type: AdditionalResource[ContestType]
+    contest_type: NamedAPIResource[ContestType]
     names: List[Name]

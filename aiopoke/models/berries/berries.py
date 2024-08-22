@@ -6,7 +6,7 @@ from aiopoke.models.berries.berry_flavors import BerryFlavor
 from aiopoke.models.items.item import Item
 from aiopoke.models.pokemon.types import Type
 from aiopoke.models.utility.common_model import (
-    AdditionalResource,
+    NamedAPIResource,
     CommonResource,
 )
 
@@ -14,7 +14,7 @@ from aiopoke.models.utility.common_model import (
 @dataclass
 class BerryFlavorMap:
     potency: int
-    flavor: AdditionalResource[BerryFlavor]
+    flavor: NamedAPIResource[BerryFlavor]
 
 
 @dataclass
@@ -25,7 +25,7 @@ class Berry(CommonResource):
     size: int
     smoothness: int
     soil_dryness: int
-    firmness: AdditionalResource[BerryFirmness]
+    firmness: NamedAPIResource[BerryFirmness]
     flavors: List[BerryFlavorMap]
-    item: AdditionalResource[Item]
-    natural_gift_type: AdditionalResource[Type]
+    item: NamedAPIResource[Item]
+    natural_gift_type: NamedAPIResource[Type]

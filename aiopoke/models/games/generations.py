@@ -7,7 +7,7 @@ from aiopoke.models.pokemon.abilities import Ability
 from aiopoke.models.pokemon.pokemon_species import PokemonSpecies
 from aiopoke.models.pokemon.types import Type
 from aiopoke.models.utility.common_model import (
-    AdditionalResource,
+    NamedAPIResource,
     CommonResource,
     Name,
 )
@@ -18,10 +18,10 @@ if TYPE_CHECKING:
 
 @dataclass
 class Generation(CommonResource):
-    abilities: List[AdditionalResource[Ability]]
-    main_region: AdditionalResource[Region]
-    moves: List[AdditionalResource[Move]]
+    abilities: List[NamedAPIResource[Ability]]
+    main_region: NamedAPIResource[Region]
+    moves: List[NamedAPIResource[Move]]
     names: List[Name]
-    pokemon_species: List[AdditionalResource[PokemonSpecies]]
-    types: List[AdditionalResource[Type]]
-    version_groups: List[AdditionalResource["VersionGroup"]]
+    pokemon_species: List[NamedAPIResource[PokemonSpecies]]
+    types: List[NamedAPIResource[Type]]
+    version_groups: List[NamedAPIResource["VersionGroup"]]

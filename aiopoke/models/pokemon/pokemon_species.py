@@ -12,8 +12,8 @@ from aiopoke.models.pokemon.pokemon_colors import PokemonColor
 from aiopoke.models.pokemon.pokemon_habitats import PokemonHabitat
 from aiopoke.models.pokemon.pokemon_shapes import PokemonShape
 from aiopoke.models.utility.common_model import (
-    Resource,
-    AdditionalResource,
+    UnnamedAPIResource,
+    NamedAPIResource,
     CommonResource,
     Description,
     FlavorText,
@@ -25,26 +25,26 @@ from aiopoke.models.utility.languages import Language
 @dataclass
 class Genus:
     genus: str
-    language: AdditionalResource[Language]
+    language: NamedAPIResource[Language]
 
 
 @dataclass
 class PokemonSpeciesDexEntry:
     entry_number: int
-    pokedex: AdditionalResource[Pokedex]
+    pokedex: NamedAPIResource[Pokedex]
 
 
 @dataclass
 class PokemonSpeciesVariety:
     is_default: bool
-    pokemon: AdditionalResource[Pokemon]
+    pokemon: NamedAPIResource[Pokemon]
 
 
 @dataclass
 class PalParkEncounterArea:
     base_score: int
     rate: int
-    area: AdditionalResource[PalParkArea]
+    area: NamedAPIResource[PalParkArea]
 
 
 @dataclass
@@ -59,18 +59,15 @@ class PokemonSpecies(CommonResource):
     hatch_counter: int
     has_gender_differences: bool
     forms_switchable: bool
-    growth_rate: AdditionalResource[GrowthRate]
+    growth_rate: NamedAPIResource[GrowthRate]
     pokedex_numbers: List[PokemonSpeciesDexEntry]
-    egg_groups: List[AdditionalResource[EggGroup]]
-    color: AdditionalResource[PokemonColor]
-    shape: AdditionalResource[PokemonShape]
-    evolves_from_species: AdditionalResource["PokemonSpecies"]
-
-    # here
-    evolution_chain: Resource
-
-    habitat: AdditionalResource[PokemonHabitat]
-    generation: AdditionalResource[Generation]
+    egg_groups: List[NamedAPIResource[EggGroup]]
+    color: NamedAPIResource[PokemonColor]
+    shape: NamedAPIResource[PokemonShape]
+    evolves_from_species: NamedAPIResource["PokemonSpecies"]
+    evolution_chain: UnnamedAPIResource[EvolutionChain]
+    habitat: NamedAPIResource[PokemonHabitat]
+    generation: NamedAPIResource[Generation]
     names: List[Name]
     flavor_text_entries: List[FlavorText]
     form_descriptions: List[Description]
