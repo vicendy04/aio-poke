@@ -1,7 +1,17 @@
 from dataclasses import dataclass
 from typing import Any, Dict, List
 
-from aiopoke.models.utility.common_models import (
+from aiopoke.models.games.generations import Generation
+from aiopoke.models.games.version import Version
+from aiopoke.models.items.item import Item
+from aiopoke.models.moves.move_learn_methods import MoveLearnMethod
+from aiopoke.models.moves.moves import Move
+from aiopoke.models.pokemon.abilities import Ability
+from aiopoke.models.pokemon.pokemon_forms import PokemonForm
+from aiopoke.models.pokemon.pokemon_species import PokemonSpecies
+from aiopoke.models.pokemon.stats import Stat
+from aiopoke.models.pokemon.types import Type
+from aiopoke.models.utility.common_model import (
     AdditionalResource,
     CommonResource,
     VersionGameIndex,
@@ -9,10 +19,16 @@ from aiopoke.models.utility.common_models import (
 
 
 @dataclass
+class PokemonFormType:
+    slot: int
+    type: AdditionalResource[Type]
+
+
+@dataclass
 class PokemonAbility:
     is_hidden: bool
     slot: int
-    ability: AdditionalResource
+    ability: AdditionalResource[Ability]
 
     def __init__(self, is_hidden: bool, slot: int, ability: Dict[str, Any]):
         self.is_hidden = is_hidden
@@ -29,7 +45,7 @@ class PokemonCries:
 @dataclass
 class PokemonHeldItemVersion:
     rarity: int
-    version: AdditionalResource
+    version: AdditionalResource[Version]
 
     def __init__(self, rarity: int, version: Dict[str, Any]):
         self.rarity = rarity
@@ -38,7 +54,7 @@ class PokemonHeldItemVersion:
 
 @dataclass
 class PokemonHeldItem:
-    item: AdditionalResource
+    item: AdditionalResource[Item]
     version_details: List[PokemonHeldItemVersion]
 
     def __init__(self, item: Dict[str, Any], version_details: List[Dict[str, Any]]):
@@ -51,8 +67,8 @@ class PokemonHeldItem:
 @dataclass
 class PokemonMoveVersion:
     level_learned_at: int
-    version_group: AdditionalResource
-    move_learn_method: AdditionalResource
+    version_group: AdditionalResource[MoveLearnMethod]
+    move_learn_method: AdditionalResource[MoveLearnMethod]
 
     def __init__(
         self,
@@ -67,7 +83,7 @@ class PokemonMoveVersion:
 
 @dataclass
 class PokemonMove:
-    move: AdditionalResource
+    move: AdditionalResource[Move]
     version_group_details: List[PokemonMoveVersion]
 
     def __init__(
@@ -82,7 +98,7 @@ class PokemonMove:
 @dataclass
 class PokemonType:
     slot: int
-    type: AdditionalResource
+    type: AdditionalResource[Type]
 
     def __init__(self, slot: int, type: Dict[str, Any]):
         self.slot = slot
@@ -91,7 +107,7 @@ class PokemonType:
 
 @dataclass
 class PokemonTypePast:
-    generation: AdditionalResource
+    generation: AdditionalResource[Generation]
     types: List[PokemonType]
 
     def __init__(self, generation: Dict[str, Any], types: List[Dict[str, Any]]):
@@ -136,7 +152,7 @@ class PokemonSprites:
 class PokemonStat:
     base_stat: int
     effort: int
-    stat: AdditionalResource
+    stat: AdditionalResource[Stat]
 
     def __init__(self, base_stat: int, effort: int, stat: Dict[str, Any]):
         self.base_stat = base_stat
@@ -152,12 +168,12 @@ class Pokemon(CommonResource):
     order: int
     weight: int
     abilities: List[PokemonAbility]
-    forms: List[AdditionalResource]
+    forms: List[AdditionalResource[PokemonForm]]
     game_indices: List[VersionGameIndex]
     held_items: List[PokemonHeldItem]
     location_area_encounters: str
     moves: List[PokemonMove]
-    species: AdditionalResource
+    species: AdditionalResource[PokemonSpecies]
     sprites: PokemonSprites
     cries: PokemonCries
     stats: List[PokemonStat]

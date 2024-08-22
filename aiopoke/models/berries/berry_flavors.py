@@ -1,7 +1,9 @@
 from dataclasses import dataclass
 from typing import List
 
-from aiopoke.models.utility.common_models import (
+from aiopoke.models.berries.berries import Berry
+from aiopoke.models.contests.contest_types import ContestType
+from aiopoke.models.utility.common_model import (
     AdditionalResource,
     CommonResource,
     Name,
@@ -11,11 +13,11 @@ from aiopoke.models.utility.common_models import (
 @dataclass
 class FlavorBerryMap:
     potency: int
-    berry: AdditionalResource
+    berry: AdditionalResource[Berry]
 
 
 @dataclass
 class BerryFlavor(CommonResource):
     berries: List[FlavorBerryMap]
-    contest_type: AdditionalResource
+    contest_type: AdditionalResource[ContestType]
     names: List[Name]

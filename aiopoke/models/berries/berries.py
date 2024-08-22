@@ -1,24 +1,20 @@
 from dataclasses import dataclass
 from typing import List
 
+from aiopoke.models.berries.berry_firmnesses import BerryFirmness
 from aiopoke.models.berries.berry_flavors import BerryFlavor
-from aiopoke.models.utility.common_models import (
+from aiopoke.models.items.item import Item
+from aiopoke.models.pokemon.types import Type
+from aiopoke.models.utility.common_model import (
     AdditionalResource,
     CommonResource,
-    Name,
 )
-
-
-@dataclass
-class BerryFirmness(CommonResource):
-    berries: AdditionalResource
-    names: List[Name]
 
 
 @dataclass
 class BerryFlavorMap:
     potency: int
-    flavor: AdditionalResource
+    flavor: AdditionalResource[BerryFlavor]
 
 
 @dataclass
@@ -29,9 +25,7 @@ class Berry(CommonResource):
     size: int
     smoothness: int
     soil_dryness: int
-
-    firmness: AdditionalResource
+    firmness: AdditionalResource[BerryFirmness]
     flavors: List[BerryFlavorMap]
-
-    item: AdditionalResource
-    natural_gift_type: AdditionalResource
+    item: AdditionalResource[Item]
+    natural_gift_type: AdditionalResource[Type]

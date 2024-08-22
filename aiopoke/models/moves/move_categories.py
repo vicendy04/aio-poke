@@ -1,5 +1,6 @@
 from typing import List
-from aiopoke.models.utility.common_models import (
+from aiopoke.models.moves.moves import Move
+from aiopoke.models.utility.common_model import (
     AdditionalResource,
     CommonResource,
     Description,
@@ -8,4 +9,4 @@ from aiopoke.models.utility.common_models import (
 
 class MoveCategory(CommonResource):
     descriptions: List[Description]
-    moves: List[AdditionalResource]
+    moves: List[AdditionalResource[Move]]

@@ -1,7 +1,11 @@
 from dataclasses import dataclass
-from typing import Any, Dict, List
+from typing import TYPE_CHECKING, Any, Dict, List
 
-from aiopoke.models.utility.common_models import Name, CommonResource
+
+from aiopoke.models.utility.common_model import CommonResource
+
+if TYPE_CHECKING:
+    from aiopoke.models.utility.common_model import Name
 
 
 @dataclass
@@ -9,7 +13,7 @@ class Language(CommonResource):
     official: bool
     iso3166: str
     iso639: str
-    names: List[Name]
+    names: List["Name"]
 
     def __init__(
         self,

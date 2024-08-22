@@ -1,5 +1,5 @@
 from typing import List
-from aiopoke.models.utility.common_models import CommonResource, Name
+from aiopoke.models.utility.common_model import CommonResource, Name
 
 
 class MoveBatteStyle(CommonResource):

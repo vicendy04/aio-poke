@@ -1,6 +1,7 @@
 from typing import List
+from aiopoke.models.items.item import Item
 from aiopoke.models.items.item_pockets import ItemPocket
-from aiopoke.models.utility.common_models import (
+from aiopoke.models.utility.common_model import (
     AdditionalResource,
     CommonResource,
     Name,
@@ -8,6 +9,6 @@ from aiopoke.models.utility.common_models import (
 
 
 class ItemCategory(CommonResource):
-    items: List[AdditionalResource]
+    items: List[AdditionalResource[Item]]
     names: List[Name]
-    pocket: AdditionalResource
+    pocket: AdditionalResource[ItemPocket]

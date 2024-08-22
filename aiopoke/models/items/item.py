@@ -1,8 +1,13 @@
 from dataclasses import dataclass
 from typing import List
 
-from aiopoke.models.utility.common_models import (
-    APIResource,
+from aiopoke.models.games.version import Version
+from aiopoke.models.items.item_attributes import ItemAttribute
+from aiopoke.models.items.item_categories import ItemCategory
+from aiopoke.models.items.item_fling_effects import ItemFlingEffect
+from aiopoke.models.pokemon.pokemon import Pokemon
+from aiopoke.models.utility.common_model import (
+    Resource,
     AdditionalResource,
     CommonResource,
     Description,
@@ -13,12 +18,6 @@ from aiopoke.models.utility.common_models import (
     VerboseEffect,
     VersionGroupFlavorText,
 )
-
-
-@dataclass
-class ItemFlingEffect(CommonResource):
-    effect_entries: List[Effect]
-    items: List[AdditionalResource]
 
 
 @dataclass
@@ -37,12 +36,12 @@ class GameIndex:
 @dataclass
 class ItemHolderPokemonVersionDetail:
     rarity: int
-    version: AdditionalResource
+    version: AdditionalResource[Version]
 
 
 @dataclass
 class ItemHolderPokemon:
-    pokemon: AdditionalResource
+    pokemon: AdditionalResource[Pokemon]
     version_details: List[ItemHolderPokemonVersionDetail]
 
 
@@ -52,20 +51,13 @@ class ItemSprites:
 
 
 @dataclass
-class ItemAttribute(CommonResource):
-    descriptions: List[Description]
-    items: List[AdditionalResource]
-    names: List[Name]
-
-
-@dataclass
 class Item(CommonResource):
     cost: int
     fling_power: int
-    fling_effect: AdditionalResource
-    attributes: List[AdditionalResource]
+    fling_effect: AdditionalResource[ItemFlingEffect]
+    attributes: List[AdditionalResource[ItemAttribute]]
 
-    category: AdditionalResource
+    category: AdditionalResource[ItemCategory]
     effect_entries: List[VerboseEffect]
     flavor_text_entries: List[VersionGroupFlavorText]
     game_indices: List[GenerationGameIndex]
@@ -73,6 +65,6 @@ class Item(CommonResource):
     sprites: ItemSprites
     held_by_pokemon: List[ItemHolderPokemon]
 
-    baby_trigger_for: APIResource
+    baby_trigger_for: Resource
 
     machines: List[MachineVersionDetail]

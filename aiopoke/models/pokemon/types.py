@@ -1,7 +1,11 @@
 from dataclasses import dataclass
 from typing import List
 
-from aiopoke.models.utility.common_models import (
+from aiopoke.models.games.generations import Generation
+from aiopoke.models.moves.move_damage_classes import MoveDamageClass
+from aiopoke.models.moves.moves import Move
+from aiopoke.models.pokemon.pokemon import Pokemon
+from aiopoke.models.utility.common_model import (
     AdditionalResource,
     CommonResource,
     GenerationGameIndex,
@@ -11,35 +15,23 @@ from aiopoke.models.utility.common_models import (
 
 @dataclass
 class TypeRelations:
-    no_damage_to: List[AdditionalResource]
-    half_damage_to: List[AdditionalResource]
-    double_damage_to: List[AdditionalResource]
-    no_damage_from: List[AdditionalResource]
-    half_damage_from: List[AdditionalResource]
-    double_damage_from: List[AdditionalResource]
-
-
-@dataclass
-class GameIndex:
-    game_index: int
-    generation: AdditionalResource
-
-
-@dataclass
-class PastDamageRelation:
-    generation: AdditionalResource
-    damage_relations: TypeRelations
+    no_damage_to: List[AdditionalResource["Type"]]
+    half_damage_to: List[AdditionalResource["Type"]]
+    double_damage_to: List[AdditionalResource["Type"]]
+    no_damage_from: List[AdditionalResource["Type"]]
+    half_damage_from: List[AdditionalResource["Type"]]
+    double_damage_from: List[AdditionalResource["Type"]]
 
 
 @dataclass
 class TypePokemon:
     slot: int
-    pokemon: AdditionalResource
+    pokemon: AdditionalResource[Pokemon]
 
 
 @dataclass
 class TypeRelationsPast:
-    generation: AdditionalResource
+    generation: AdditionalResource[Generation]
     damage_relations: TypeRelations
 
 
@@ -50,9 +42,9 @@ class Type(CommonResource):
     past_damage_relations: List[TypeRelationsPast]
     game_indices: List[GenerationGameIndex]
 
-    generation: AdditionalResource
-    move_damage_class: AdditionalResource
+    generation: AdditionalResource[Generation]
+    move_damage_class: AdditionalResource[MoveDamageClass]
 
     names: List[Name]
     pokemon: List[TypePokemon]
-    moves: List[AdditionalResource]
+    moves: List[AdditionalResource[Move]]

@@ -1,14 +1,14 @@
 from dataclasses import dataclass
 from typing import List, Optional
 
-from aiopoke.models.utility.common_models import AdditionalResource
+from aiopoke.models.utility.common_model import AdditionalResource
 
 
 @dataclass
 class EvolutionDetail:
     gender: Optional[int]
     held_item: Optional[AdditionalResource]
-    item: Optional[AdditionalResource]]
+    item: Optional[AdditionalResource]
     known_move: Optional[AdditionalResource]
     known_move_type: Optional[AdditionalResource]
     location: Optional[AdditionalResource]

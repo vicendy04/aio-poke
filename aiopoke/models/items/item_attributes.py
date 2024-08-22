@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import List
 
-from aiopoke.models.moves.moves import Move
+from aiopoke.models.items.item import Item
 from aiopoke.models.utility.common_model import (
     AdditionalResource,
     CommonResource,
@@ -11,7 +11,7 @@ from aiopoke.models.utility.common_model import (
 
 
 @dataclass
-class MoveDamageClass(CommonResource):
+class ItemAttribute(CommonResource):
     descriptions: List[Description]
-    moves: List[AdditionalResource[Move]]
+    items: List[AdditionalResource["Item"]]
     names: List[Name]

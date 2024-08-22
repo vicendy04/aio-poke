@@ -8,10 +8,10 @@ from aiopoke.models.utility.common_model import (
 )
 
 if TYPE_CHECKING:
-    from aiopoke.models.games.version_groups import VersionGroup
+    from aiopoke.models.encounters.encounter_conditions import EncounterCondition
 
 
 @dataclass
-class Version(CommonResource):
-    names: List[Name]
-    version_group: AdditionalResource[VersionGroup]
+class EncounterConditionValue(CommonResource):
+    condition: AdditionalResource["EncounterCondition"]
+    names: List["Name"]
