@@ -1,17 +1,18 @@
 from dataclasses import dataclass
-from typing import List
+from typing import TYPE_CHECKING, List
 
-from aiopoke.models.moves.moves import Move
+if TYPE_CHECKING:
+    from aiopoke.models.moves.moves import Move
 from aiopoke.models.utility.common_model import (
-    NamedAPIResource,
     CommonResource,
     Description,
     Name,
+    NamedAPIResource,
 )
 
 
 @dataclass
 class MoveDamageClass(CommonResource):
-    descriptions: List[Description]
-    moves: List[NamedAPIResource[Move]]
-    names: List[Name]
+    descriptions: List["Description"]
+    moves: List["NamedAPIResource[Move]"]
+    names: List["Name"]

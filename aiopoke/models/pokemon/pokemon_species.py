@@ -1,23 +1,24 @@
 from dataclasses import dataclass
-from typing import List
+from typing import TYPE_CHECKING, List
 
-from aiopoke.models.evolution.evolution_chains import EvolutionChain
-from aiopoke.models.games.generations import Generation
-from aiopoke.models.games.pokedexs import Pokedex
-from aiopoke.models.locations.pal_park_areas import PalParkArea
-from aiopoke.models.pokemon.egg_groups import EggGroup
-from aiopoke.models.pokemon.growth_rates import GrowthRate
-from aiopoke.models.pokemon.pokemon import Pokemon
-from aiopoke.models.pokemon.pokemon_colors import PokemonColor
-from aiopoke.models.pokemon.pokemon_habitats import PokemonHabitat
-from aiopoke.models.pokemon.pokemon_shapes import PokemonShape
+if TYPE_CHECKING:
+    from aiopoke.models.evolution.evolution_chains import EvolutionChain
+    from aiopoke.models.games.generations import Generation
+    from aiopoke.models.games.pokedexs import Pokedex
+    from aiopoke.models.locations.pal_park_areas import PalParkArea
+    from aiopoke.models.pokemon.egg_groups import EggGroup
+    from aiopoke.models.pokemon.growth_rates import GrowthRate
+    from aiopoke.models.pokemon.pokemon import Pokemon
+    from aiopoke.models.pokemon.pokemon_colors import PokemonColor
+    from aiopoke.models.pokemon.pokemon_habitats import PokemonHabitat
+    from aiopoke.models.pokemon.pokemon_shapes import PokemonShape
 from aiopoke.models.utility.common_model import (
-    UnnamedAPIResource,
-    NamedAPIResource,
     CommonResource,
     Description,
     FlavorText,
     Name,
+    NamedAPIResource,
+    UnnamedAPIResource,
 )
 from aiopoke.models.utility.languages import Language
 
@@ -25,26 +26,26 @@ from aiopoke.models.utility.languages import Language
 @dataclass
 class Genus:
     genus: str
-    language: NamedAPIResource[Language]
+    language: NamedAPIResource["Language"]
 
 
 @dataclass
 class PokemonSpeciesDexEntry:
     entry_number: int
-    pokedex: NamedAPIResource[Pokedex]
+    pokedex: NamedAPIResource["Pokedex"]
 
 
 @dataclass
 class PokemonSpeciesVariety:
     is_default: bool
-    pokemon: NamedAPIResource[Pokemon]
+    pokemon: NamedAPIResource["Pokemon"]
 
 
 @dataclass
 class PalParkEncounterArea:
     base_score: int
     rate: int
-    area: NamedAPIResource[PalParkArea]
+    area: NamedAPIResource["PalParkArea"]
 
 
 @dataclass

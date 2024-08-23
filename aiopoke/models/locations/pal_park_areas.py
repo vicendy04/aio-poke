@@ -1,10 +1,12 @@
 from dataclasses import dataclass
-from typing import List
-from aiopoke.models.pokemon.pokemon_species import PokemonSpecies
+from typing import TYPE_CHECKING, List
+
+if TYPE_CHECKING:
+    from aiopoke.models.pokemon.pokemon_species import PokemonSpecies
 from aiopoke.models.utility.common_model import (
-    NamedAPIResource,
     CommonResource,
     Name,
+    NamedAPIResource,
 )
 
 
@@ -12,7 +14,7 @@ from aiopoke.models.utility.common_model import (
 class PalParkEncounterSpecies:
     base_score: int
     rate: int
-    pokemon_species: NamedAPIResource[PokemonSpecies]
+    pokemon_species: NamedAPIResource["PokemonSpecies"]
 
 
 @dataclass

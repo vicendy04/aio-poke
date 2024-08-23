@@ -1,15 +1,17 @@
 from dataclasses import dataclass
-from typing import List
+from typing import TYPE_CHECKING, List
 
-from aiopoke.models.items.item import Item
 from aiopoke.models.utility.common_model import (
-    NamedAPIResource,
     CommonResource,
     Effect,
+    NamedAPIResource,
 )
+
+if TYPE_CHECKING:
+    from aiopoke.models.items.item import Item
 
 
 @dataclass
 class ItemFlingEffect(CommonResource):
-    effect_entries: List[Effect]
-    items: List[NamedAPIResource["Item"]]
+    effect_entries: List["Effect"]
+    items: List["NamedAPIResource[Item]"]

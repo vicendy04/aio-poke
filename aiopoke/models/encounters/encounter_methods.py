@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from typing import List
+
 from aiopoke.models.utility.common_model import CommonResource, Name
 
 

@@ -1,34 +1,36 @@
 from dataclasses import dataclass
-from typing import Any, Dict, List
+from typing import TYPE_CHECKING, Any, Dict, List
 
-from aiopoke.models.games.generations import Generation
-from aiopoke.models.games.version import Version
-from aiopoke.models.items.item import Item
-from aiopoke.models.moves.move_learn_methods import MoveLearnMethod
-from aiopoke.models.moves.moves import Move
-from aiopoke.models.pokemon.abilities import Ability
-from aiopoke.models.pokemon.pokemon_forms import PokemonForm
-from aiopoke.models.pokemon.pokemon_species import PokemonSpecies
-from aiopoke.models.pokemon.stats import Stat
-from aiopoke.models.pokemon.types import Type
 from aiopoke.models.utility.common_model import (
-    NamedAPIResource,
     CommonResource,
+    NamedAPIResource,
     VersionGameIndex,
 )
+
+if TYPE_CHECKING:
+    from aiopoke.models.games.generations import Generation
+    from aiopoke.models.games.version import Version
+    from aiopoke.models.items.item import Item
+    from aiopoke.models.moves.move_learn_methods import MoveLearnMethod
+    from aiopoke.models.moves.moves import Move
+    from aiopoke.models.pokemon.abilities import Ability
+    from aiopoke.models.pokemon.pokemon_forms import PokemonForm
+    from aiopoke.models.pokemon.pokemon_species import PokemonSpecies
+    from aiopoke.models.pokemon.stats import Stat
+    from aiopoke.models.pokemon.types import Type
 
 
 @dataclass
 class PokemonFormType:
     slot: int
-    type: NamedAPIResource[Type]
+    type: NamedAPIResource["Type"]
 
 
 @dataclass
 class PokemonAbility:
     is_hidden: bool
     slot: int
-    ability: NamedAPIResource[Ability]
+    ability: NamedAPIResource["Ability"]
 
     def __init__(self, is_hidden: bool, slot: int, ability: Dict[str, Any]):
         self.is_hidden = is_hidden
@@ -45,7 +47,7 @@ class PokemonCries:
 @dataclass
 class PokemonHeldItemVersion:
     rarity: int
-    version: NamedAPIResource[Version]
+    version: NamedAPIResource["Version"]
 
     def __init__(self, rarity: int, version: Dict[str, Any]):
         self.rarity = rarity
@@ -54,8 +56,8 @@ class PokemonHeldItemVersion:
 
 @dataclass
 class PokemonHeldItem:
-    item: NamedAPIResource[Item]
-    version_details: List[PokemonHeldItemVersion]
+    item: NamedAPIResource["Item"]
+    version_details: List["PokemonHeldItemVersion"]
 
     def __init__(self, item: Dict[str, Any], version_details: List[Dict[str, Any]]):
         self.item = NamedAPIResource(**item)
@@ -67,8 +69,8 @@ class PokemonHeldItem:
 @dataclass
 class PokemonMoveVersion:
     level_learned_at: int
-    version_group: NamedAPIResource[MoveLearnMethod]
-    move_learn_method: NamedAPIResource[MoveLearnMethod]
+    version_group: NamedAPIResource["MoveLearnMethod"]
+    move_learn_method: NamedAPIResource["MoveLearnMethod"]
 
     def __init__(
         self,
@@ -83,7 +85,7 @@ class PokemonMoveVersion:
 
 @dataclass
 class PokemonMove:
-    move: NamedAPIResource[Move]
+    move: NamedAPIResource["Move"]
     version_group_details: List[PokemonMoveVersion]
 
     def __init__(
@@ -98,7 +100,7 @@ class PokemonMove:
 @dataclass
 class PokemonType:
     slot: int
-    type: NamedAPIResource[Type]
+    type: NamedAPIResource["Type"]
 
     def __init__(self, slot: int, type: Dict[str, Any]):
         self.slot = slot
@@ -107,7 +109,7 @@ class PokemonType:
 
 @dataclass
 class PokemonTypePast:
-    generation: NamedAPIResource[Generation]
+    generation: NamedAPIResource["Generation"]
     types: List[PokemonType]
 
     def __init__(self, generation: Dict[str, Any], types: List[Dict[str, Any]]):
@@ -136,7 +138,7 @@ class PokemonSprites:
         front_female: str,
         front_shiny: str,
         front_shiny_female: str,
-        **kwargs,  # other and versions JSON data not handle yet
+        **kwargs,  # other and versions JSON data not handled yet
     ):
         self.back_default = back_default
         self.back_female = back_female
@@ -152,7 +154,7 @@ class PokemonSprites:
 class PokemonStat:
     base_stat: int
     effort: int
-    stat: NamedAPIResource[Stat]
+    stat: NamedAPIResource["Stat"]
 
     def __init__(self, base_stat: int, effort: int, stat: Dict[str, Any]):
         self.base_stat = base_stat
@@ -168,12 +170,12 @@ class Pokemon(CommonResource):
     order: int
     weight: int
     abilities: List[PokemonAbility]
-    forms: List[NamedAPIResource[PokemonForm]]
+    forms: List[NamedAPIResource["PokemonForm"]]
     game_indices: List[VersionGameIndex]
     held_items: List[PokemonHeldItem]
     location_area_encounters: str
     moves: List[PokemonMove]
-    species: NamedAPIResource[PokemonSpecies]
+    species: NamedAPIResource["PokemonSpecies"]
     sprites: PokemonSprites
     cries: PokemonCries
     stats: List[PokemonStat]

@@ -1,10 +1,12 @@
 from dataclasses import dataclass
-from typing import List
-from aiopoke.models.pokemon.pokemon_species import PokemonSpecies
+from typing import TYPE_CHECKING, List
+
+if TYPE_CHECKING:
+    from aiopoke.models.pokemon.pokemon_species import PokemonSpecies
 from aiopoke.models.utility.common_model import (
-    NamedAPIResource,
     CommonResource,
     Description,
+    NamedAPIResource,
 )
 
 
@@ -16,7 +18,7 @@ class GrowthRateExperienceLevel:
 
 @dataclass
 class GrowthRate(CommonResource):
-    descriptions: List[Description]
+    descriptions: List["Description"]
     formula: str
-    levels: List[GrowthRateExperienceLevel]
-    pokemon_species: List[NamedAPIResource[PokemonSpecies]]
+    levels: List["GrowthRateExperienceLevel"]
+    pokemon_species: List["NamedAPIResource[PokemonSpecies]"]

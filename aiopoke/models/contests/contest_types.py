@@ -1,9 +1,11 @@
 from dataclasses import dataclass
-from typing import List
+from typing import TYPE_CHECKING, List
 
-from aiopoke.models.berries.berry_flavors import BerryFlavor
-from aiopoke.models.utility.common_model import NamedAPIResource, CommonResource
+from aiopoke.models.utility.common_model import CommonResource, NamedAPIResource
 from aiopoke.models.utility.languages import Language
+
+if TYPE_CHECKING:
+    from aiopoke.models.berries.berry_flavors import BerryFlavor
 
 
 @dataclass
@@ -16,4 +18,4 @@ class ContestName:
 @dataclass
 class ContestType(CommonResource):
     berry_flavor: NamedAPIResource[BerryFlavor]
-    names: List[ContestName]
+    names: List["ContestName"]

@@ -1,12 +1,13 @@
 from dataclasses import dataclass
-from typing import List
+from typing import TYPE_CHECKING, List
 
-from aiopoke.models.games.version_groups import VersionGroup
-from aiopoke.models.pokemon.pokemon import Pokemon, PokemonFormType
+if TYPE_CHECKING:
+    from aiopoke.models.games.version_groups import VersionGroup
+    from aiopoke.models.pokemon.pokemon import Pokemon, PokemonFormType
 from aiopoke.models.utility.common_model import (
-    NamedAPIResource,
     CommonResource,
     Name,
+    NamedAPIResource,
 )
 
 
@@ -30,9 +31,9 @@ class PokemonForm(CommonResource):
     is_battle_only: bool
     is_mega: bool
     form_name: str
-    pokemon: NamedAPIResource[Pokemon]
+    pokemon: NamedAPIResource["Pokemon"]
     sprites: PokemonFormSprites
-    types: List[PokemonFormType]
-    version_group: NamedAPIResource[VersionGroup]
-    names: List[Name]
-    form_names: List[Name]
+    types: List["PokemonFormType"]
+    version_group: NamedAPIResource["VersionGroup"]
+    names: List["Name"]
+    form_names: List["Name"]

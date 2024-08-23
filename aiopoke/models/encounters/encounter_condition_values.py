@@ -2,9 +2,9 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, List
 
 from aiopoke.models.utility.common_model import (
-    NamedAPIResource,
     CommonResource,
     Name,
+    NamedAPIResource,
 )
 
 if TYPE_CHECKING:
