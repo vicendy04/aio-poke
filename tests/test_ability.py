@@ -1,5 +1,5 @@
 import asyncio
-from aiopoke.adaptor import PokeAPIClient
+from aiopoke.client import PokeAPIClient
 from aiopoke.service import PokeAPIService
 
 

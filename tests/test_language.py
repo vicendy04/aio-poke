@@ -1,7 +1,7 @@
 import asyncio
 import json
 
-from aiopoke.adaptor import PokeAPIClient
+from aiopoke.client import PokeAPIClient
 from aiopoke.models.utility.languages import Language
 from aiopoke.service import PokeAPIService
 

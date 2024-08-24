@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Dict
 
 if TYPE_CHECKING:
     from aiopoke.models.games.version_groups import VersionGroup
@@ -15,3 +15,16 @@ class Machine:
     item: NamedAPIResource["Item"]
     move: NamedAPIResource["Move"]
     version_group: NamedAPIResource["VersionGroup"]
+
+    def __init__(
+        self,
+        *,
+        id: int,
+        item: Dict[str, Any],
+        move: Dict[str, Any],
+        version_group: Dict[str, Any],
+    ) -> None:
+        self.id = id
+        self.item = NamedAPIResource(**item)
+        self.move = NamedAPIResource(**move)
+        self.version_group = NamedAPIResource(**version_group)

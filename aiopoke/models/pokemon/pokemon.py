@@ -25,6 +25,15 @@ class PokemonFormType:
     slot: int
     type: NamedAPIResource["Type"]
 
+    def __init__(
+        self,
+        *,
+        slot: int,
+        type: Dict[str, Any],
+    ) -> None:
+        self.slot = slot
+        self.type = NamedAPIResource(**type)
+
 
 @dataclass
 class PokemonAbility:
